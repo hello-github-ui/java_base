@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>java_base</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <description>学习Java基础知识</description>
+
+    <!--多模块设置-->
+    <modules>
+        <module>thread</module>
+        <module>net</module>
+        <module>array</module>
+        <module>http</module>
+        <module>file</module>
+        <module>mq</module>
+        <module>jdbc</module>
+        <module>mianshi</module>
+        <module>aop</module>
+    </modules>
+
+    <!--统一版本设置-->
+    <properties>
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <junit-jupiter.version>5.8.1</junit-jupiter.version>
+        <mysql-version>8.0.26</mysql-version>
+        <lombok-version>1.18.22</lombok-version>
+        <lang3-version>3.12.0</lang3-version>
+        <http-client>4.5.13</http-client>
+        <common-io-version>2.1</common-io-version>
+        <rocket-mq-version>4.8.0</rocket-mq-version>
+        <hutool-version>5.3.3</hutool-version>
+        <mybatis-version>2.1.0</mybatis-version>
+        <aop-version>2.5.6</aop-version>
+        <spring-boot-version>2.5.1</spring-boot-version>
+        <spring-boot-web-starter-version>2.4.4</spring-boot-web-starter-version>
+    </properties>
+
+
+    <!--在父类Maven中使用dependencyManagement声明依赖便于子类Module继承使用,也便于进行依赖版本控制-->
+    <dependencyManagement>
+        <dependencies>
+            <!--引入 JUnit5 单元测试包，注意JUnit5版本的依赖包变成了如下的包了，不再是4.x的 junit 了
+            内容参见：https://junit.org/junit5/docs/current/user-guide/#running-tests-build-maven
+            -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter.version}</version>
+            </dependency>
+
+            <!--mybatis-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-version}</version>
+            </dependency>
+
+            <!--aop-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${aop-version}</version>
+            </dependency>
+
+            <!--springboot version-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot-version}</version>
+            </dependency>
+
+            <!--springboot-starter-web-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-web-starter-version}</version>
+            </dependency>
+
+            <!--Apache common-lang3 utils ArrayUtils-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${lang3-version}</version>
+            </dependency>
+
+            <!--简化getter/setter-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok-version}</version>
+                <optional>true</optional>
+            </dependency>
+
+            <!--MySql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-version}</version>
+            </dependency>
+
+            <!--HttpClient-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${http-client}</version>
+            </dependency>
+
+            <!-- FilenameUtils 工具类库-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${common-io-version}</version>
+            </dependency>
+
+            <!--rocketMQ Client-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocket-mq-version}</version>
+            </dependency>
+
+            <!--hutool工具类库-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!--在父类Maven中使用pluginManagement管理插件便于子类Module继承使用,也便于进行依赖版本控制-->
+        <pluginManagement>
+            <plugins>
+                <!--配置Maven项目compiler插件-->
+                <!--此工具不会打包依赖-->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+
+                <!--配置Maven项目assembly插件-->
+                <!--此工具会将全部依赖打包-->
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                        <archive>
+                            <manifest>
+                                <!--子类Maven通过mainClass标签设置成主类的全类名FQCN-->
+                                <!--<mainClass></mainClass>-->
+                            </manifest>
+                        </archive>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
