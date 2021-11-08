@@ -1,4 +1,4 @@
-package socket;
+package socket.基础模式;
 
 import java.io.IOException;
 import java.io.InputStream;
