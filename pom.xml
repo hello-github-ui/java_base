@@ -28,6 +28,8 @@
         <module>jdbc</module>
         <module>mianshi</module>
         <module>aop</module>
+        <module>string</module>
+        <module>collection</module>
     </modules>
 
     <!--统一版本设置-->
