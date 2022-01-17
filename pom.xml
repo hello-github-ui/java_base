@@ -49,6 +49,7 @@
         <aop-version>2.5.6</aop-version>
         <spring-boot-version>2.5.1</spring-boot-version>
         <spring-boot-web-starter-version>2.4.4</spring-boot-web-starter-version>
+        <fastjson-version>1.2.78</fastjson-version>
     </properties>
 
 
@@ -140,6 +141,13 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool-version}</version>
+            </dependency>
+
+            <!--fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson-version}</version>
             </dependency>
 
         </dependencies>
