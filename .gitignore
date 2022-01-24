@@ -3,5 +3,7 @@
 *.iml
 
 # project self maven setting
-#mvnw
-#mvnw.cmd
+mvnw
+mvnw.cmd
+
+*.class

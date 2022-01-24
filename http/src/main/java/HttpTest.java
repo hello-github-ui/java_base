@@ -104,4 +104,16 @@ public class HttpTest {
     public void httpPostTest() {
         httpPost("https://www.dmoe.cc/random.php?return=json");
     }
+
+    public static void getInt(){
+        String[] str = new String[]{"1", "2", "33"};
+        System.out.println(str);
+    }
+
+    @Test
+    public void test2(){
+        getInt();
+        System.out.println("*********");
+        getInt();
+    }
 }
