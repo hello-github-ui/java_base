@@ -7,3 +7,4 @@ mvnw
 mvnw.cmd
 
 *.class
+.mvn

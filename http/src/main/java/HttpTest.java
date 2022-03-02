@@ -102,7 +102,8 @@ public class HttpTest {
 
     @Test
     public void httpPostTest() {
-        httpPost("https://www.dmoe.cc/random.php?return=json");
+//        httpPost("https://www.dmoe.cc/random.php?return=json");
+        httpPost("https://huoche.tuniu.com/yii.php?r=train/trainTicket/getTickets&primary[departureDate]=2022-02-16&primary[departureCityName]=攀枝花&primary[arrivalCityName]=成都");
     }
 
     public static void getInt(){
