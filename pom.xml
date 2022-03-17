@@ -64,6 +64,8 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit-jupiter.version}</version>
+                <!-- scope 的默认值是 compile，在 main, test, 服务器时期都可用 -->
+                <scope>compile</scope>
             </dependency>
 
             <!--mybatis-->
@@ -71,6 +73,7 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--aop-->
@@ -78,6 +81,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-aop</artifactId>
                 <version>${aop-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--springboot version-->
@@ -85,6 +89,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${spring-boot-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--springboot-starter-web-->
@@ -92,6 +97,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot-web-starter-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--Apache common-lang3 utils ArrayUtils-->
@@ -99,6 +105,7 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${lang3-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--简化getter/setter-->
@@ -107,6 +114,7 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok-version}</version>
                 <optional>true</optional>
+                <scope>compile</scope>
             </dependency>
 
             <!--MySql-->
@@ -114,6 +122,7 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--HttpClient-->
@@ -121,6 +130,7 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${http-client}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- FilenameUtils 工具类库-->
@@ -128,6 +138,7 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${common-io-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--rocketMQ Client-->
@@ -135,6 +146,7 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
                 <version>${rocket-mq-version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!--hutool工具类库-->
