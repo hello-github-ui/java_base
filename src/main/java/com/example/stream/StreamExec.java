@@ -33,6 +33,7 @@ public class StreamExec {
         String contents = new String(bytes, StandardCharsets.UTF_8);
         // Split into words; nonletters are delimiters
         List<String> words = Arrays.asList(contents.split("\\PL+"));
+		System.out.println(words);
 
         long count = 0;
         for (String word : words) {
