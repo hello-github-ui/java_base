@@ -32,6 +32,7 @@
         <module>collection</module>
         <module>lock</module>
         <module>competition</module>
+        <module>retry-demo</module>
     </modules>
 
     <!--统一版本设置-->
