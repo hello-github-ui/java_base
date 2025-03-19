@@ -29,6 +29,15 @@ public class RecursiveCalculationDynamic {
                 .sql("select stock_code, `date` AS adjust_date, sgbl, pgbl, pgj, xjhl, zzgbl from htsc_ods_ins.t_stock_split_zl where `date` > '20230301'");
 
         // =====2.数据预处理
+        // 对日K表添加 PreClosePrice（昨收价） 字段
+        // 创建窗口函数，按照 SecurityID 分区，并按照 MDDate 升序排列
+        WindowSpec klineWindow = Window.partitionBy("SecurityID").orderBy("MDDate");
+        // 计算 PreClosePrice（昨收价）
+        klineDF = klineDF.withColumn(
+                "PreClosePrice",
+                functions.lag("ClosePx", 1).over(klineWindow)
+        );
+
         // 对factor因子表数据按照stock_code分区并按日期排序
         WindowSpec factorWindow = Window
                 .partitionBy("stock_code")
@@ -158,7 +167,7 @@ public class RecursiveCalculationDynamic {
                 aggregatedDF.col("LowPx"),
                 aggregatedDF.col("ClosePx"),
 
-                functions.calluDF("calculate_adjustment",
+                functions.callUDF("calculate_adjustment",
                         aggregatedDF.col("OpenPx"),
                         aggregatedDF.col("code_sequence")
                 ).alias("BadJustOpeningPrice"),
@@ -173,7 +182,7 @@ public class RecursiveCalculationDynamic {
                         aggregatedDF.col("code_sequence")
                 ).alias("BadJustHighsetPrice"),
 
-                functions.calluDF("calculate_adjustment",
+                functions.callUDF("calculate_adjustment",
                         aggregatedDF.col("LowPx"),
                         aggregatedDF.col("code_sequence")
                 ).alias("BadJustLowsetPrice"),
@@ -206,8 +215,8 @@ public class RecursiveCalculationDynamic {
                 .parquet("hdfs://nameservice1/user/hive/warehouse/htsc_ods_ins.db/sr_qtt_xshe_stock_kline1day-prebadjust_di_test/tradingday=20230301/");
 
         // 打印示例结果
-        System.out.printLn("========== 计算结果样例 ==========")
-        resultDF.show(numRows:5, false);
+        System.out.println("========== 计算结果样例 ==========");
+        resultDF.show(5, false);
 
         // 停止Spark
         spark.close();
