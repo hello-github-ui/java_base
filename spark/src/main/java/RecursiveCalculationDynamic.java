@@ -178,8 +178,9 @@ public class RecursiveCalculationDynamic {
                         aggregatedDF.col("code_sequence")
                 ).alias("BadJustLowsetPrice"),
 
-                // TODO 没有如下两个字段
-                functions.lit(literal:1.3).alias("PreClosePrice"),
+                // TODO 没有如下两个字段 PreClosePrice 昨收价 和 BadJustPreClosingPrice 前复权昨收价
+                // 因此，先给常量值 或者先用 CLosePx 收盘价 填充
+                functions.lit(1.3).alias("PreClosePrice"),
 
                 functions.callUDF("calculate_adjustment",
                         aggregatedDF.col("ClosePx"),
