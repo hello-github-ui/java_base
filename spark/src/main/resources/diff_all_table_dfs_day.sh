@@ -140,8 +140,8 @@ filter_current_week_day(){
         if [[ $s1 == *$reg_str* ]]; then
             s2=${s1#*tradingday=}
             if [[ "$s2" != "" ]]; then
-                if [ $(($2)) -lt $((last_date)) ]; then
-                    # 过滤掉本周新增的内容，追加到临时文件 /home/liqianding/hdfs_infos/diff/20220330/XSHG_Bond_Order_Auction/temp.txt
+                if [ $((s2)) -lt $((last_date)) ]; then
+                    # 过滤掉本周新增的内容，追加到临时文件
                     echo $s1 >>$current_path/temp.txt
                 fi
             fi
@@ -174,7 +174,7 @@ compare_file(){
     sed -i '/time---/d' $current_path/diff.txt
     # 将该结果上传到 hdfs 用于回溯
     echo "将diff.txt上传到hdfs保存"
-    hdfs --config $conf_path dfs -put $current_path/diff.txt /hdata/mdc/diff/$current_date/
+    hdfs --config $conf_path dfs -put $current_path/diff.txt /htdata/mdc/diff/$current_date/
 }
 
 #####判断diff.txt文件是否为空
